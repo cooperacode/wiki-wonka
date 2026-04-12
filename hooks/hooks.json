@@ -1,0 +1,80 @@
+{
+  "hooks": {
+
+    "PreToolUse": [
+      {
+        "description": "Block any write to raw/ — sources are immutable",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/protect-raw.sh"
+          }
+        ]
+      }
+    ],
+
+    "PostToolUse": [
+      {
+        "description": "Auto git commit after any write to wiki/",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/git-autocommit.sh"
+          }
+        ]
+      }
+    ],
+
+    "FileChanged": [
+      {
+        "description": "Notify when a new file appears in raw/ — suggest ingest",
+        "matcher": "raw/",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"New file in raw/: \" + .file_path + \". Say \\\"ingest\\\" to process it.\"'"
+          }
+        ]
+      }
+    ],
+
+    "SessionStart": [
+      {
+        "description": "Restore wiki context after auto-compaction",
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/restore-context.sh"
+          }
+        ]
+      }
+    ],
+
+    "Stop": [
+      {
+        "description": "Suggest lint when 5 or more ingests have occurred since the last lint",
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/hooks/suggest-lint.sh"
+          }
+        ]
+      },
+      {
+        "description": "System notification when the agent finishes (macOS/Linux)",
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"wiki-wonka done\" with title \"wiki-wonka\"' 2>/dev/null || notify-send 'wiki-wonka' 'Operation complete' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+
+  }
+}

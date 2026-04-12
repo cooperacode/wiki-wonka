@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "wiki-wonka: start",
+      "type": "shell",
+      "command": "claude --plugin-dir .",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "wiki-wonka: start with agent",
+      "type": "shell",
+      "command": "claude --agent orchestrator",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

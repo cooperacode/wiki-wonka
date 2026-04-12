@@ -1,0 +1,12 @@
+{
+  "name": "wiki-wonka",
+  "description": "A persistent LLM-maintained wiki for your knowledge base. Ingest sources, query your knowledge, and lint for consistency.",
+  "version": "1.0.0",
+  "author": {
+    "name": "yan justino",
+    "url": "https://github.com/yanjustino"
+  },
+  "homepage": "https://github.com/cooperacode/wiki-wonka",
+  "repository": "https://github.com/cooperacode/wiki-wonka.git",
+  "license": "MIT"
+}

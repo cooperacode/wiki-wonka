@@ -1,0 +1,17 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.obsidian/workspace.json
+.obsidian/cache
+.vscode/settings.json
+
+# Fontes brutas grandes que não cabem no git
+raw/assets/*.mp4
+raw/assets/*.mp3
+raw/assets/*.zip
+
+# Temporários de processamento
+*.tmp
+*.bak
