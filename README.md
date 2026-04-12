@@ -6,33 +6,33 @@
 LLM Wiki
 **A persistent, LLM-maintained knowledge base inspired by [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).**
 
-## Overview
+## 🧭 Overview
 
 wiki-wonka is an agent-driven system for building and maintaining a structured, evolving wiki of knowledge. Instead of relying on stateless retrieval (RAG) for every query, wiki-wonka compiles and curates knowledge into a persistent, interlinked set of Markdown pages. The LLM agent handles all the summarizing, cross-referencing, and bookkeeping—so your knowledge base compounds and improves over time.
 
-## How it works
+## 🛠️ How it works
 
 - **Raw sources**: Immutable documents (papers, articles, data) are added to the `raw/` folder. The LLM never edits these files.
 - **Wiki**: The agent generates and maintains Markdown pages in `wiki/`, including summaries, entity pages, concepts, and an evolving synthesis. All cross-references and updates are handled automatically.
 - **Schema**: The structure and conventions are defined in a schema file (see `wiki/SCHEMA.md`). This ensures consistency and enables the LLM to act as a disciplined maintainer, not just a chatbot.
 
-## Main operations
+## ⚡ Main operations
 
 - **Ingest**: Add a new source to `raw/` and instruct the agent to process it. The agent reads, summarizes, updates relevant pages, and logs the operation.
 - **Query**: Ask questions against the wiki. The agent synthesizes answers from existing pages, always citing sources. New insights can be filed back into the wiki.
 - **Lint**: Periodically check the wiki for contradictions, stale claims, orphan pages, and missing cross-references. The agent suggests fixes and keeps the knowledge base healthy.
 
-## Indexing and logging
+## 🗂️ Indexing and logging
 
 - `wiki/index.md`: Catalog of all wiki pages, organized by category, with summaries and links.
 - `wiki/log.md`: Chronological log of all ingests, queries, and maintenance actions.
 
-## Why this approach?
+## 🤔 Why this approach?
 
 Traditional RAG systems force the LLM to rediscover knowledge from scratch on every query. By maintaining a persistent, evolving wiki, wiki-wonka enables deeper synthesis, better cross-referencing, and a continuously improving knowledge base. The LLM does the grunt work; you curate sources and guide the process.
 
 
-## Usage
+## 💡 Usage
 
 The user interacts directly in natural language—no special commands to memorize. The orchestrator interprets intent and routes to the right skill.
 
@@ -67,7 +67,6 @@ Would you like to discuss any point before continuing?
 ```
 
 ---
-
 
 ### Query
 
@@ -145,7 +144,37 @@ In VS Code with Copilot, the user opens the chat panel and uses `@workspace` to 
 
 Compatibility works because `.github/copilot-instructions.md` contains the same routing rules as `CLAUDE.md`—the user doesn't need to change vocabulary between the two agents.
 
----
+
+## 🛠️ Troubleshooting
+
+### Problem: hook scripts lack execution permission
+
+If you get an error about permission denied when running any hook-related command, it means the scripts do not have execution permission.
+
+To fix this, run:
+
+```bash
+chmod +x hooks/*.sh
+```
+
+Then reload the hooks:
+
+```bash
+/reload-plugins
+```
+
+To confirm it worked before reloading:
+
+```bash
+ls -la hooks/*.sh
+```
+
+The output should show `-rwxr-xr-x` at the start of each line. If it still shows `-rw-r--r--`, the `chmod` was not applied in the correct folder—make sure you are in the project root (`wiki-wonka/`) before running the command.
+
+
+
+
+## 📚 References
 
 
 - Read the original pattern: [Karpathy's LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
