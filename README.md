@@ -34,6 +34,18 @@ Traditional RAG systems force the LLM to rediscover knowledge from scratch on ev
 
 ## 💡 Usage
 
+Before interacting, start the agent server in claude code:
+
+```bash
+# 1. navigate to the project root
+cd wiki-wonka
+
+# 2. start the agent server with the current directory as the plugin source
+claude --plugin-dir .
+```
+>[!NOTE]
+> You can then interact with the agent `wiki-wonka` through any interface that supports the plugin, such as a chat UI or Copilot.
+
 The user interacts directly in natural language—no special commands to memorize. The orchestrator interprets intent and routes to the right skill.
 
 Here are the main interaction patterns:

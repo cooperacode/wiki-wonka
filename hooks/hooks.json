@@ -1,6 +1,5 @@
 {
   "hooks": {
-
     "PreToolUse": [
       {
         "description": "Block any write to raw/ — sources are immutable",
@@ -13,7 +12,6 @@
         ]
       }
     ],
-
     "PostToolUse": [
       {
         "description": "Auto git commit after any write to wiki/",
@@ -26,7 +24,6 @@
         ]
       }
     ],
-
     "FileChanged": [
       {
         "description": "Notify when a new file appears in raw/ — suggest ingest",
@@ -39,7 +36,6 @@
         ]
       }
     ],
-
     "SessionStart": [
       {
         "description": "Restore wiki context after auto-compaction",
@@ -52,7 +48,6 @@
         ]
       }
     ],
-
     "Stop": [
       {
         "description": "Suggest lint when 5 or more ingests have occurred since the last lint",
@@ -75,6 +70,5 @@
         ]
       }
     ]
-
   }
 }
