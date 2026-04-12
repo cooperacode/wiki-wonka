@@ -1,10 +1,10 @@
 # Index
 
-_0 pages across 0 sources, 0 entities, 0 concepts. Last updated: 2026-04-12._
+_0 pages across 0 source, 0 entities, 0 concepts. Last updated: 0._
 
 ## Sources
 
-_No sources ingested yet._
+_No source pages yet._
 
 ## Entities
 
