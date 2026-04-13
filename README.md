@@ -22,6 +22,23 @@ wiki-wonka is an agent-driven system for building and maintaining a structured, 
 - **Query**: Ask questions against the wiki. The agent synthesizes answers from existing pages, always citing sources. New insights can be filed back into the wiki.
 - **Lint**: Periodically check the wiki for contradictions, stale claims, orphan pages, and missing cross-references. The agent suggests fixes and keeps the knowledge base healthy.
 
+## 🌐 Language support
+
+wiki-wonka generates all wiki content in the language configured in `wiki/config.md`:
+
+```yaml
+---
+language: pt-BR   # e.g. en-US, pt-BR, es
+---
+```
+
+The orchestrator reads this file at startup and enforces the language across every operation — ingest summaries, query answers, concept definitions, lint reports, and free-conversation responses. To switch languages, edit the file and continue working; existing pages are not rewritten automatically.
+
+What always stays in English regardless of the setting:
+- Frontmatter field names (`title`, `slug`, `type`, `tags`, …)
+- File slugs (`attention-mechanism.md`)
+- Callout types (`[!contradiction]`, `[!gap]`, `[!outdated]`, `[!deprecated]`)
+
 ## 🗂️ Indexing and logging
 
 - `wiki/index.md`: Catalog of all wiki pages, organized by category, with summaries and links.
@@ -61,8 +78,6 @@ The user mentions a source—file path, pasted URL, or direct content:
 "process this article: raw/attention-is-all-you-need.md"
 
 "I just saved a PDF in raw/, it's called transformers-survey.pdf"
-
-"paste here: [article text]"
 ```
 
 The agent confirms, executes the ingest, and reports how many pages were touched:
@@ -109,7 +124,6 @@ The user asks explicitly or the agent may suggest periodically:
 
 ```
 "run a lint on the wiki"
-
 "are there any orphan pages?"
 "what is outdated after the last ingest?"
 ```

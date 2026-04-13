@@ -1,7 +1,7 @@
 {
   "name": "wiki-wonka",
   "description": "A persistent LLM-maintained wiki for your knowledge base. Ingest sources, query your knowledge, and lint for consistency.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "yan justino",
     "url": "https://github.com/yanjustino"
