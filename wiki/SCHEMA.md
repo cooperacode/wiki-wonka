@@ -6,6 +6,21 @@ this file is the authority.
 
 ---
 
+## Wiki configuration (`wiki/config.md`)
+
+```yaml
+---
+language: pt-BR   # BCP 47 tag — e.g. en-US, pt-BR, es
+---
+```
+
+- Read by the orchestrator at startup. If missing, defaults to `en-US`.
+- Controls the language of all generated prose: summaries, definitions, descriptions, open questions, notable quotes context.
+- Does **not** affect frontmatter field names (always English/snake_case), slugs, or callout types (`[!contradiction]`, `[!gap]`, etc.).
+- To change language: edit this file. New pages will use the new language; existing pages are not retroactively rewritten.
+
+---
+
 ## Directory layout
 
 ```
