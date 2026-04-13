@@ -16,6 +16,22 @@ wiki-wonka is an agent-driven system for building and maintaining a structured, 
 - **Wiki**: The agent generates and maintains Markdown pages in `wiki/`, including summaries, entity pages, concepts, and an evolving synthesis. All cross-references and updates are handled automatically.
 - **Schema**: The structure and conventions are defined in a schema file (see `wiki/SCHEMA.md`). This ensures consistency and enables the LLM to act as a disciplined maintainer, not just a chatbot.
 
+## ✨ Features
+
+- **Persistent knowledge base** — wiki pages compound over time; no rediscovery from scratch on every query
+- **Structured ingestion** — two-phase flow (analysis + confirmation) before any file is written
+- **Cross-referencing** — wikilinks (`[[slug]]`) connect sources, entities, and concepts automatically
+- **Query with citations** — answers always sourced from wiki pages, never from model memory alone
+- **Lint & health checks** — detects contradictions, orphan pages, outdated claims, and missing cross-references
+- **Append-only log** — full audit trail of every ingest, query, and lint operation in `wiki/log.md`
+- **Callout system** — `[!contradiction]`, `[!gap]`, `[!outdated]`, `[!deprecated]` flag issues for human review
+- **Language support** — all generated prose follows the locale set in `wiki/config.md` (e.g. `pt-BR`, `en-US`)
+- **Git auto-commit** — hook commits wiki page writes automatically, keeping history clean
+- **Immutable raw sources** — `raw/` is write-protected; the agent can never modify original documents
+- **Schema-driven** — conventions defined in `wiki/SCHEMA.md` keep every page consistent and predictable
+
+---
+
 ## ⚡ Main operations
 
 - **Ingest**: Add a new source to `raw/` and instruct the agent to process it. The agent reads, summarizes, updates relevant pages, and logs the operation.
@@ -48,7 +64,6 @@ What always stays in English regardless of the setting:
 
 Traditional RAG systems force the LLM to rediscover knowledge from scratch on every query. By maintaining a persistent, evolving wiki, wiki-wonka enables deeper synthesis, better cross-referencing, and a continuously improving knowledge base. The LLM does the grunt work; you curate sources and guide the process.
 
-
 ## 💡 Usage
 
 Before interacting, start the agent server in claude code:
@@ -68,7 +83,6 @@ The user interacts directly in natural language—no special commands to memoriz
 Here are the main interaction patterns:
 
 ---
-
 
 ### Ingest
 
@@ -117,14 +131,15 @@ Would you like me to archive this analysis as a new concept page?
 
 ---
 
-
 ### Lint
 
 The user asks explicitly or the agent may suggest periodically:
 
 ```
 "run a lint on the wiki"
+
 "are there any orphan pages?"
+
 "what is outdated after the last ingest?"
 ```
 
@@ -140,7 +155,6 @@ Would you like me to resolve everything now or review item by item?
 ```
 
 ---
-
 
 ### Free conversation
 
@@ -159,7 +173,6 @@ The user can also just chat—the orchestrator decides if a skill is needed or r
 
 ---
 
-
 ### For Copilot specifically
 
 In VS Code with Copilot, the user opens the chat panel and uses `@workspace` to give repository context. Interactions are the same, but Copilot is more helpful when the user mentions files explicitly:
@@ -169,7 +182,6 @@ In VS Code with Copilot, the user opens the chat panel and uses `@workspace` to 
 ```
 
 Compatibility works because `.github/copilot-instructions.md` contains the same routing rules as `CLAUDE.md`—the user doesn't need to change vocabulary between the two agents.
-
 
 ## 🛠️ Troubleshooting
 
@@ -197,11 +209,7 @@ ls -la hooks/*.sh
 
 The output should show `-rwxr-xr-x` at the start of each line. If it still shows `-rw-r--r--`, the `chmod` was not applied in the correct folder—make sure you are in the project root (`wiki-wonka/`) before running the command.
 
-
-
-
 ## 📚 References
-
 
 - Read the original pattern: [Karpathy's LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
 - See the schema and skills in the `wiki/` and `skills/` folders
