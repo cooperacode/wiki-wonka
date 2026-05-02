@@ -1,0 +1,40 @@
+{
+    "files.associations": {
+        "*.md": "markdown"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.lineNumbers": "off",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
+    },
+    "markdown.validate.enabled": true,
+    "search.exclude": {
+        "raw/assets/**": true
+    },
+    "files.watcherExclude": {
+        "raw/assets/**": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "index.md": "log.md, SCHEMA.md, overview.md, config.md"
+    },
+    "chat.agentFilesLocations": {
+        ".github/agents": true,
+        ".claude/agents": true,
+        "~/.copilot/agents": true,
+        "agents/": true
+    },
+    "chat.useAgentSkills": true,
+    "chat.agentSkillsLocations": {
+        "skills": true
+    },
+    "chat.useHooks": true,
+    "chat.useClaudeHooks": true,
+    "chat.hookFilesLocations": {
+        "hooks": true,
+    }
+}
